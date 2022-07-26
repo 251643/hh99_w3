@@ -35,13 +35,16 @@ public class BoardController {
 
     @PutMapping("/api/boards/{id}")
     public String updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
-        String result = boardService.update(id, requestDto);
-        return result;
+        return boardService.update(id, requestDto);
+    }
+
+    @GetMapping("/api/boards/{id}")
+    public String checkPassword(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
+        return boardService.check(id, requestDto);
     }
 
     @DeleteMapping("/api/boards/{id}")
     public String deleteBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
-        String result = boardService.delete(id, requestDto);
-        return result;
+        return boardService.delete(id, requestDto);
     }
 }
