@@ -38,7 +38,7 @@ public class BoardController {
         return boardService.update(id, requestDto);
     }
 
-    @GetMapping("/api/boards/{id}")
+    @GetMapping("/api/boards/check/{id}")
     public String checkPassword(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
         return boardService.check(id, requestDto);
     }
