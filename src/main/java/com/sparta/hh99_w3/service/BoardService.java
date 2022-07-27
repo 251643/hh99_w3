@@ -34,7 +34,6 @@ public class BoardService {
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         if(board.getPassword().equals(requestDto.getPassword())){
-            board.update(requestDto);
             return "비밀번호가 일치합니다.";
         }else{
             return "비밀번호가 다릅니다.";
