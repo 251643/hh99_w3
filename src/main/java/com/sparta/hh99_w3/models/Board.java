@@ -48,4 +48,7 @@ public class Board extends Timestamped { // 생성,수정 시간을 자동으로
     public void delete(BoardRequestDto requestDto) {
         this.password = requestDto.getPassword();
     }
+
+
+
 }

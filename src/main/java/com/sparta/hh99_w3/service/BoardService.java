@@ -1,13 +1,13 @@
 package com.sparta.hh99_w3.service;
 
 
-import com.sparta.hh99_w3.models.Board;
-import com.sparta.hh99_w3.models.BoardRepository;
-import com.sparta.hh99_w3.models.BoardRequestDto;
+import com.sparta.hh99_w3.models.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -51,6 +51,24 @@ public class BoardService {
         }else{
             return "비밀번호가 다릅니다.";
         }
+    }
+
+    @Transactional
+    public List<BoardResponseDto.ListResponseDto> readList(){
+        List<Board> boardList = boardRepository.findAllByOrderByModifiedAtDesc();
+        List<BoardResponseDto.ListResponseDto> boardResponseDtoList = new ArrayList<>();
+        for(Board board : boardList){
+            boardResponseDtoList.add(new BoardResponseDto.ListResponseDto(board));
+        }
+        return boardResponseDtoList;
+    }
+
+    @Transactional
+    public BoardResponseDto.DetailResponseDto readDetail(Long id){
+        Board boardDetail = boardRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        return new BoardResponseDto.DetailResponseDto(boardDetail);
     }
 
 }
